@@ -1,10 +1,9 @@
 import React, { useRef } from 'react'
 import {getSearchedMovies} from '../services/moviesService'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addSearchedMovies } from '../store/movieSlice'
 
 const GTPSearchBar = () => {
-    console.log("Search bar created")
     const searchRef = useRef();
     const dispatch =useDispatch()
    

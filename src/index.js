@@ -4,12 +4,12 @@ import { createBrowserRouter,RouterProvider,Outlet } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Body from './components/Body';
-import Login from './components/Login';
-import Browser from './components/Browser';
-import Error from './components/Error';
-import ProtectedRoute from './components/common/ProtectedRoute';
-import PublicRoute from './components/common/PublicRoute'
+import Body from './pages/Body';
+import Login from './pages/Login';
+import Browser from './pages/Browser';
+import Error from './pages/Error';
+import ProtectedRoute from './middleware/ProtectedRoute';
+import PublicRoute from './middleware/PublicRoute'
 
 const appRouter=createBrowserRouter([
   {
