@@ -1,18 +1,17 @@
-import React, { useEffect } from 'react'
-import {getNewMovies} from '../services/moviesService'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { addNowPlayingMovies } from '../store/movieSlice'
-const useFetchMovies = (fetchMoviesApi, actionCreator) => {
-    const dispatch =useDispatch()
 
-    useEffect(() => {
+const useFetchMovies = (fetchMoviesApi, actionCreator) => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
     const fetchMovies = async () => {
-        const data = await fetchMoviesApi();
-        dispatch(actionCreator(data));
+      const data = await fetchMoviesApi();
+      dispatch(actionCreator(data));
     };
-  
+
     fetchMovies();
-  }, [dispatch,fetchMoviesApi,actionCreator])
+  }, [dispatch, fetchMoviesApi, actionCreator])
 
 }
 

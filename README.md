@@ -31,14 +31,10 @@
 - Authenciation 
 - scroll api hit page 
 - shimmer UI effect 
-- folder structure
-- constant api updated
 - debounce and polling  R & d 
 - each movie page show trailer movie details 
 - react security
-- responsive 
-- env file 
--memoasation -reduce apis calls
-image background issue 
+- memoasation -reduce apis calls
+- image background issue 
 
 

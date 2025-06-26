@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import Header from './Header'
+import Header from '../components/Header'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
-import { login, register } from '../services/userService'
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup'
 import { addUser } from '../store/userSlice';
-import { EMAIL,TOKEN,NETFLIX_BACKGROUND_IMG } from '../utils/constants';
+import { EMAIL, TOKEN, NETFLIX_BACKGROUND_IMG } from '../utils/constants';
 
 const signInSchema = yup.object().shape({
     email: yup.string().email('Invalid Email').required('Email is required'),
@@ -42,13 +41,13 @@ const Login = () => {
                 // right now static
                 // const result = await login(data)
                 navigate('/browser')
-                dispatch(addUser({ email: EMAIL, token: TOKEN}))
+                dispatch(addUser({ email: EMAIL, token: TOKEN }))
                 //save token 
             }
             else {
                 // const result = await register(data)
                 console.log("registeration success")
-                dispatch(addUser({ email: EMAIL, token: TOKEN}))
+                dispatch(addUser({ email: EMAIL, token: TOKEN }))
                 navigate('/browser')
             }
 
@@ -65,7 +64,6 @@ const Login = () => {
             <img
                 src={NETFLIX_BACKGROUND_IMG}
                 alt="Netflix Background"
-                //  className="absolute top-0 left-0 w-full h-full object-cover opacity-50 -z-10"
                 className="absolute inset-0 w-full h-full object-cover opacity-50 z-0 pointer-events-none"
             />
 

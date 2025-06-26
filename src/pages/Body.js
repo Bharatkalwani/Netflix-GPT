@@ -1,6 +1,6 @@
 import React from 'react'
-import Login from './Login'
-import Browser from './Browser'
+import Login from '../pages/Login'
+import Browser from '../pages/Browser'
 
 const Body = () => {
   return (

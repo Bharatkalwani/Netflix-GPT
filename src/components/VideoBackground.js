@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react'
-// import { useDispatch } from 'react-redux'
 import { getVideosByMovieId } from '../services/moviesService'
 const VideoBackground = ({ movieId }) => {
  const [movieTrailer,setMovieTrailer]=useState(null) // save also in redux
- //?si=FsHCYF-bi0xaFkdD
- const fetchVideosByMovieId = async () => {
-    let getVideos = await getVideosByMovieId(movieId);
-
-    let filterVideo = getVideos.filter((video) => {
-      return video.type === 'Trailer'
-    })
-    let trailer = filterVideo.length ? filterVideo[1] : getVideos[0]  //need to check if array is there 
-    let newMovieTrailer = `https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&enablejsapi=1`
-    setMovieTrailer(newMovieTrailer)
-  };
 
   useEffect(() => {
+    const fetchVideosByMovieId = async () => {
+      let getVideos = await getVideosByMovieId(movieId);
+  
+      let filterVideo = getVideos.filter((video) => {
+        return video.type === 'Trailer'
+      })
+      let trailer = filterVideo.length ? filterVideo[1] : getVideos[0]
+      let newMovieTrailer = `https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&enablejsapi=1`
+      setMovieTrailer(newMovieTrailer)
+    };
     fetchVideosByMovieId();
-  }, [])
+  }, [movieId])
 
   return (
     <div>
