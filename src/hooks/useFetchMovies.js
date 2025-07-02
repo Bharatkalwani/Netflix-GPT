@@ -4,7 +4,7 @@ import {updateMovieLoaded} from '../store/movieSlice'
 
 const useFetchMovies = (fetchMoviesApi, actionCreator, selector) => {
   const dispatch = useDispatch()
-  const movieData = useSelector(selector); // memoization -to reduce apis calls 
+  const movieData = useSelector(selector); // Memoization -to reduce apis calls 
 
   useEffect(() => {
     const fetchMovies = async () => {
