@@ -11,80 +11,40 @@ import Error from './pages/Error';
 import ProtectedRoute from './middleware/ProtectedRoute';
 import PublicRoute from './middleware/PublicRoute'
 
-const appRouter=createBrowserRouter([
+const appRouter = createBrowserRouter([
   {
-    path:"/",
-    element:<App></App>,
-    children:[
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "/", element: <Body /> },
       {
-          path:"/",
-          element:<Body></Body>,
-      },
-      {
-        path:"/login",
+        path: "/login",
         element: (
           <PublicRoute>
-            <Login/>
+            <Login />
           </PublicRoute>
         ),
       },
       {
-        path:"",
-        element: <ProtectedRoute><Outlet/></ProtectedRoute>,
-        children:[
-          {
-            path:"/browser",
-            element:<Browser></Browser>
-          }
-        ]
-      // path:"/browser",
-      // element:<Browser></Browser>
+        path: "/browser",
+        element: (
+          <ProtectedRoute>
+            <Browser />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "*",
+        element: <Error />,
       },
     ],
-    errorElement:<Error></Error>
-  }
-])
+  },
 
-// const appRouter = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     children: [
-//       { path: "/", element: <Body /> },
-//       {
-//         path: "/login",
-//         element: (
-//           <PublicRoute>
-//             <Login />
-//           </PublicRoute>
-//         ),
-//       },
-//     ],
-//   },
-//   {
-//     path: "/browser",
-//     element: (
-//       <ProtectedRoute>
-//         <Browser />
-//       </ProtectedRoute>
-//     ),
-//   },
-//   {
-//     path: "*",
-//     element: <Error />,
-//   },
-// ]);
-
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>
   <RouterProvider router={appRouter}/>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

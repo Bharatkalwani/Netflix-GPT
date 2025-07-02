@@ -25,16 +25,15 @@
       - moview lists
   - netflex gpt 
      - search bar 
-     - moview suggestions      
+     - moview suggestions  
+- shimmer UI effect  
+- Memoization- to reduce apis calls   
 
 # Pending 
-- Authenciation 
 - scroll api hit page 
-- shimmer UI effect 
-- debounce and polling  R & d 
 - each movie page show trailer movie details 
 - react security
-- memoasation -reduce apis calls
 - image background issue 
+- debounce and polling  R & d 
 
 

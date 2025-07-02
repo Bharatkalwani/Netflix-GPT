@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { removeUser } from '../store/userSlice';
-import { removeSearchedMovies } from "../store/movieSlice"
-import { NETFLIX_LOGO } from '../utils/constants'
+import { removeUser } from '../../store/userSlice';
+import { removeSearchedMovies } from "../../store/movieSlice"
+import { NETFLIX_LOGO } from '../../utils/constants'
 
 const Header = ({ toggleGPTSearch, setToggleGPTSearch }) => {
   const dispatch = useDispatch();
@@ -13,6 +13,7 @@ const Header = ({ toggleGPTSearch, setToggleGPTSearch }) => {
   const handleSignOut = () => {
     dispatch(removeSearchedMovies());
     dispatch(removeUser());
+    localStorage.removeItem('user')
     navigate('/login')
   }
 

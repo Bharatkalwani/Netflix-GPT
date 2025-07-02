@@ -1,23 +1,15 @@
-import { useEffect } from "react";
+
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-// import { , useLocation } from "react-router-dom";
+import { useNavigate,Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
-    const navigate = useNavigate();
-    const user = useSelector((state) => state.user);
-  
-    useEffect(() => {
-      if (!user?.token) {
-        navigate('/login');
-      }
-    }, [user, navigate]);
-  
-    if (!user?.token) {
-      return null; // or a loading spinner
-    }
-  
-    return children;
-  };
+  // const navigate = useNavigate();
+  const user = useSelector((store) => store.user);
+  if (!user || !user.token) {
+    return <Navigate to="/login" replace />; //used  out event handles
+    // navigate('/login'); // used in event handlers like useEffect
+  }
+  return children;
+};
 
 export default ProtectedRoute;
