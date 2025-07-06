@@ -48,3 +48,9 @@ export const getVideosByMovieId = async (payload) => {
   getVideos = getVideos.results;
   return getVideos
 }
+
+export const getMovieDetails = async (payload) => {
+  let getMovieData = await fetch(`${process.env.REACT_APP_TMDB_BASE_URL}${payload}`, options)
+  getMovieData = await getMovieData.json();
+  return getMovieData
+}

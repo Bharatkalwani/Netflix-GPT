@@ -1,11 +1,13 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { removeUser } from '../store/userSlice';
-import { removeSearchedMovies } from "../store/movieSlice"
-import { NETFLIX_LOGO } from '../utils/constants'
+import { removeUser } from '../../store/userSlice';
+import { removeSearchedMovies,setToggleGPTSearch,removeAllData } from "../../store/movieSlice"
+import { NETFLIX_LOGO } from '../../utils/constants'
 
-const Header = ({ toggleGPTSearch, setToggleGPTSearch }) => {
+const Header = () => {
+  let toggleGPTSearch = useSelector((store) => store.movies.toggleGPTSearch)
+  //{ toggleGPTSearch, setToggleGPTSearch } //for uplifting
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user)
@@ -13,11 +15,23 @@ const Header = ({ toggleGPTSearch, setToggleGPTSearch }) => {
   const handleSignOut = () => {
     dispatch(removeSearchedMovies());
     dispatch(removeUser());
+    dispatch(setToggleGPTSearch());
+    localStorage.removeItem('user')
     navigate('/login')
+    dispatch(removeAllData());
   }
 
+
   const handleGPTSearch = () => {
-    setToggleGPTSearch(!toggleGPTSearch)
+    const newValue = !toggleGPTSearch;
+    dispatch(setToggleGPTSearch());
+ 
+   if(newValue)
+    navigate('/gptSearch')
+  else
+  navigate('/browser')
+
+
     dispatch(removeSearchedMovies());
   }
 

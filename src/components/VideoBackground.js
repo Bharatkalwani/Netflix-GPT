@@ -10,7 +10,7 @@ const VideoBackground = ({ movieId }) => {
       let filterVideo = getVideos.filter((video) => {
         return video.type === 'Trailer'
       })
-      let trailer = filterVideo.length ? filterVideo[1] : getVideos[0]
+      let trailer = filterVideo.length ? filterVideo[0] : getVideos[0]
       let newMovieTrailer = `https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&enablejsapi=1`
       setMovieTrailer(newMovieTrailer)
     };

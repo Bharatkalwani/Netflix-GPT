@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import Header from '../components/Header'
+import Header from '../components/shared/Header'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useDispatch } from 'react-redux';
@@ -19,7 +19,6 @@ const signUpSchema = yup.object().shape({
     fullName: yup.string().required('Full name is required'),
 })
 
-
 const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -35,22 +34,18 @@ const Login = () => {
         mode: 'all'
     })
 
-    const onSubmit = async (data) => {
+    const onSubmit = async () => {
         try {
             if (isSignInForm) {
-                // right now static
-                // const result = await login(data)
                 navigate('/browser')
                 dispatch(addUser({ email: EMAIL, token: TOKEN }))
-                //save token 
+                localStorage.setItem("user", JSON.stringify({ email: EMAIL, token: TOKEN }));
             }
             else {
-                // const result = await register(data)
-                console.log("registeration success")
                 dispatch(addUser({ email: EMAIL, token: TOKEN }))
                 navigate('/browser')
+                localStorage.setItem("user", JSON.stringify({ email: EMAIL, token: TOKEN }));
             }
-
         } catch (error) {
         }
     }
@@ -86,7 +81,7 @@ const Login = () => {
                         }
                         <input
                             type="email"
-                            placeholder="Email or phone number"
+                            placeholder="kalwanibharat40@gmail.com"
                             {...register('email')}
                             className="p-3 bg-gray-700 text-white placeholder-gray-100 border border-gray-700 focus:border-red-500 rounded focus:outline-none"
 
@@ -94,7 +89,7 @@ const Login = () => {
                         <p>{errors.email?.message}</p>
                         <input
                             type="password"
-                            placeholder="Password"
+                            placeholder="1234"
                             {...register('password')}
                             className="p-3 bg-gray-700 text-white placeholder-gray-100 border border-gray-700 focus:border-red-500 rounded focus:outline-none"
 

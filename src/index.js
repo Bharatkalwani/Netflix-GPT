@@ -4,87 +4,64 @@ import { createBrowserRouter,RouterProvider,Outlet } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Body from './pages/Body';
 import Login from './pages/Login';
 import Browser from './pages/Browser';
 import Error from './pages/Error';
 import ProtectedRoute from './middleware/ProtectedRoute';
 import PublicRoute from './middleware/PublicRoute'
+import MovieDetails from './pages/MovieDetails';
+import GPTSearch from './pages/GPTSearch';
 
-const appRouter=createBrowserRouter([
+const appRouter = createBrowserRouter([
   {
-    path:"/",
-    element:<App></App>,
-    children:[
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "/", element: <App /> },
       {
-          path:"/",
-          element:<Body></Body>,
-      },
-      {
-        path:"/login",
+        path: "/login",
         element: (
           <PublicRoute>
-            <Login/>
+            <Login />
           </PublicRoute>
         ),
       },
       {
-        path:"",
-        element: <ProtectedRoute><Outlet/></ProtectedRoute>,
-        children:[
-          {
-            path:"/browser",
-            element:<Browser></Browser>
-          }
-        ]
-      // path:"/browser",
-      // element:<Browser></Browser>
+        path: "/browser",
+        element: (
+          <ProtectedRoute>
+            <Browser />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/gptSearch",
+        element: (
+          <ProtectedRoute>
+            <GPTSearch />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/movieDetails/:movieId",
+        element: (
+          <ProtectedRoute>
+            <MovieDetails />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "*",
+        element: <Error />,
       },
     ],
-    errorElement:<Error></Error>
-  }
-])
+  },
 
-// const appRouter = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     children: [
-//       { path: "/", element: <Body /> },
-//       {
-//         path: "/login",
-//         element: (
-//           <PublicRoute>
-//             <Login />
-//           </PublicRoute>
-//         ),
-//       },
-//     ],
-//   },
-//   {
-//     path: "/browser",
-//     element: (
-//       <ProtectedRoute>
-//         <Browser />
-//       </ProtectedRoute>
-//     ),
-//   },
-//   {
-//     path: "*",
-//     element: <Error />,
-//   },
-// ]);
-
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>
   <RouterProvider router={appRouter}/>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

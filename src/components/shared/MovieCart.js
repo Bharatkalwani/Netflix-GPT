@@ -1,5 +1,5 @@
 import React from 'react'
-import { MOVIE_IMG_URL } from '../utils/constants'
+import { MOVIE_IMG_URL } from '../../utils/constants'
 const MovieCart = ({ movie }) => {
     return (
         <div className=' w-48 pr-4'>
