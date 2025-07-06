@@ -4,6 +4,7 @@ const moviesSlice = createSlice({
   name: 'movies',
   initialState: {
     isMovieLoaded:true,
+    toggleGPTSearch:false,
     nowPlayingMovies: null,
     popularMovies: null,
     topRatedMovies: null,
@@ -31,10 +32,19 @@ const moviesSlice = createSlice({
     },
     removeSearchedMovies: (state, action) => {
        state.searchedMovies=null
-    }
+    },
+    removeAllData: (state, action) => {
+      state.toggleGPTSearch=false
+    },
+    setToggleGPTSearch: (state, action) => {
+      state.toggleGPTSearch=!state.toggleGPTSearch
+      console.log("toggleGPTSearch",state.toggleGPTSearch)
+   }
 
   }
 })
 
-export const { addNowPlayingMovies, addPopularMovies, addTopRatedMovies, addUpcomingMovies, addSearchedMovies, removeSearchedMovies,updateMovieLoaded } = moviesSlice.actions
+export const { addNowPlayingMovies, addPopularMovies, addTopRatedMovies,
+               addUpcomingMovies, addSearchedMovies, removeSearchedMovies,
+               updateMovieLoaded,setToggleGPTSearch,removeAllData } = moviesSlice.actions
 export default moviesSlice.reducer;

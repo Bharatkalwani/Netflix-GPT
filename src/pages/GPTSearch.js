@@ -1,13 +1,15 @@
 import React from 'react'
-import GTPSearchBar from './GTPSearchBar'
+import Header from '../components/shared/Header'
+import GTPSearchBar from '../components/GTPSearchBar'
 import { NETFLIX_BACKGROUND_IMG, SEARCHED_MOVIE_TEXT } from '../utils/constants'
 import { useSelector } from 'react-redux'
-import MovieList from './MovieList'
+import MovieList from '../components/MovieList'
 
 const GPTSearch = () => {
     const movies = useSelector((store) => store.movies)
     return (
         <div>
+         <Header/>
             <div className='absolute inset-0 -z-10'>
                 <img
                     className=''

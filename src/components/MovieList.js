@@ -2,9 +2,9 @@ import React from 'react'
 import MovieCart from '../components/shared/MovieCart'
 import ShimmerUI from './shared/ShimmerUI';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 const MovieList = ({ title, movies, layout = "horizontal" }) => {
     let isMovieLoaded = useSelector((store) => store.movies.isMovieLoaded)
-    console.log("isMovieLoaded", isMovieLoaded)
     const shimmerCount = layout === "horizontal" ? 9 : 6;
 
     const renderShimmer = () => {
@@ -24,7 +24,7 @@ const MovieList = ({ title, movies, layout = "horizontal" }) => {
                         {
                             isMovieLoaded ? renderShimmer() :
                                 (movies?.map((movie) => (
-                                    <MovieCart key={movie.id} movie={movie} />
+                                   <Link key={movie.id} to={"/movieDetails/"+ movie.id}> <MovieCart key={movie.id} movie={movie} /></Link>
                                 )))
                         }
 
@@ -36,7 +36,7 @@ const MovieList = ({ title, movies, layout = "horizontal" }) => {
                     {isMovieLoaded ? renderShimmer() :
 
                         movies?.map((movie) => (
-                            <MovieCart key={movie.id} movie={movie} />
+                            <Link key={movie.id} to={"/movieDetails/"+ movie.id}> <MovieCart key={movie.id} movie={movie} /></Link>
                         ))}
                 </div>
             )}
